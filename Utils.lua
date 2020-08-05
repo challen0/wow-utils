@@ -19,12 +19,12 @@ function DetermineRepairMessage(repairAllCost, guildBankWithdrawLimit)
 	end
 end
 
-function FormatGuildRepairMessage(message, repairAllCost, guildBankWithdrawLimit)
-	return string.format(message, FormatMoney(repairAllCost), FormatMoney(guildBankWithdrawLimit))
+function FormatGuildRepairMessage(repairAllCost, guildBankWithdrawLimit)
+	return string.format(GUILD_REPAIR_MESSAGE, FormatMoney(repairAllCost), FormatMoney(guildBankWithdrawLimit))
 end
 
-function FormatOwnRepairMessage(message, repairAllCost, guildBankUsed, ownMoneyUsed)
-	return string.format(message, FormatMoney(repairAllCost), FormatMoney(guildBankUsed), FormatMoney(ownMoneyUsed))
+function FormatOwnRepairMessage(repairAllCost, guildBankUsed, ownMoneyUsed)
+	return string.format(OWN_REPAIR_MESSAGE, FormatMoney(repairAllCost), FormatMoney(guildBankUsed), FormatMoney(ownMoneyUsed))
 end
 
 function FormatMoney(money)
