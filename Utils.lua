@@ -12,6 +12,7 @@ function MerchantShow_AutoRepair(self, event)
 end
 
 function DetermineRepairMessage(repairAllCost, guildBankWithdrawLimit)
+	local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
 	if (repairAllCost < guildBankWithdrawLimit) then
 		return FormatGuildRepairMessage(repairAllCost, guildBankWithdrawLimit - repairAllCost)
 	else
