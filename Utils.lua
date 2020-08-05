@@ -5,7 +5,7 @@ function MerchantShow_AutoRepair(self, event)
 		if (needRepairs and canUseGuildBankForRepairing) then
 			local message = DetermineRepairMessage(repairAllCost)
 			PrintRepairMessage(message)
-			-- RepairAllItems(true)
+			RepairAllItems(true)
 		end
 	end
 end
