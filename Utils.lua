@@ -5,7 +5,8 @@ function MerchantShow_AutoRepair(self, event)
 	if (CanMerchantRepair()) then
 		local repairAllCost, needRepairs = GetRepairAllCost()
 		if (needRepairs and CanGuildBankRepair()) then
-			PrintRepairMessage(repairAllCost)
+			local message = DetermineRepairMessage(repairAllCost)
+			PrintRepairMessage(message)
 			-- RepairAllItems(true)
 		end
 	end
