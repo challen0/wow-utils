@@ -4,7 +4,8 @@ OWN_REPAIR_MESSAGE = "Repairing your items for %s with %s from the guild bank an
 function MerchantShow_AutoRepair(self, event)
 	if (CanMerchantRepair()) then
 		local repairAllCost, needRepairs = GetRepairAllCost()
-		if (needRepairs and CanGuildBankRepair()) then
+		local canUseGuildBankForRepairing = CanGuildBankRepair()
+		if (needRepairs and canUseGuildBankForRepairing) then
 			local message = DetermineRepairMessage(repairAllCost)
 			PrintRepairMessage(message)
 			-- RepairAllItems(true)
