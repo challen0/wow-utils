@@ -1,6 +1,3 @@
-GUILD_REPAIR_MESSAGE = "Repairing your items for %s. You have %s left in the guild bank for today."
-OWN_REPAIR_MESSAGE = "Repairing your items for %s with %s from the guild bank and %s of your own money."
-
 function MerchantShow_AutoRepair(self, event)
 	if (CanMerchantRepair()) then
 		local repairAllCost, needRepairs = GetRepairAllCost()
@@ -23,11 +20,13 @@ function DetermineRepairMessage(repairAllCost)
 end
 
 function FormatGuildRepairMessage(repairAllCost, guildBankWithdrawLimit)
-	return string.format(GUILD_REPAIR_MESSAGE, FormatMoney(repairAllCost), FormatMoney(guildBankWithdrawLimit))
+	local GuildRepairMessage = "Repairing your items for %s. You have %s left in the guild bank for today."
+	return string.format(GuildRepairMessage, FormatMoney(repairAllCost), FormatMoney(guildBankWithdrawLimit))
 end
 
 function FormatOwnRepairMessage(repairAllCost, guildBankUsed, ownMoneyUsed)
-	return string.format(OWN_REPAIR_MESSAGE, FormatMoney(repairAllCost), FormatMoney(guildBankUsed), FormatMoney(ownMoneyUsed))
+	local OwnRepairMessage = "Repairing your items for %s with %s from the guild bank and %s of your own money."
+	return string.format(OwnRepairMessage, FormatMoney(repairAllCost), FormatMoney(guildBankUsed), FormatMoney(ownMoneyUsed))
 end
 
 function FormatMoney(money)
