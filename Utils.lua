@@ -5,18 +5,22 @@ function MerchantShow_AutoRepair(self, event)
 	if (CanMerchantRepair()) then
 		local repairAllCost, needRepairs = GetRepairAllCost()
 		if (needRepairs and CanGuildBankRepair()) then
-			local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
-			local repairAllCoinText = GetCoinText(repairAllCost, ", ")
-			if (repairAllCost < guildBankWithdrawLimit) then
-				local guildBankWithdrawLimitCoinText = GetCoinText(guildBankWithdrawLimit - repairAllCost, ", ")
-				DEFAULT_CHAT_FRAME:AddMessage(string.format(GUILD_REPAIR_MESSAGE, repairAllCoinText, guildBankWithdrawLimitCoinText), 255, 255, 0)
-			else
-				local guildFundsCoinText = GetCoinText(guildBankWithdrawLimit, ", ")
-				local ownFundsCoinText = GetCoinText(abs(repairAllCost - guildBankWithdrawLimit), ", ")
-				DEFAULT_CHAT_FRAME:AddMessage(string.format(OWN_REPAIR_MESSAGE, repairAllCoinText, guildFundsCoinText, ownFundsCoinText), 255, 255, 0)
-			end
+			PrintRepairMessage(repairAllCost)
 			-- RepairAllItems(true)
 		end
+	end
+end
+
+function PrintRepairMessage(repairAllCost)
+	local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
+	local repairAllCoinText = GetCoinText(repairAllCost, ", ")
+	if (repairAllCost < guildBankWithdrawLimit) then
+		local guildBankWithdrawLimitCoinText = GetCoinText(guildBankWithdrawLimit - repairAllCost, ", ")
+		DEFAULT_CHAT_FRAME:AddMessage(string.format(GUILD_REPAIR_MESSAGE, repairAllCoinText, guildBankWithdrawLimitCoinText), 255, 255, 0)
+	else
+		local guildFundsCoinText = GetCoinText(guildBankWithdrawLimit, ", ")
+		local ownFundsCoinText = GetCoinText(abs(repairAllCost - guildBankWithdrawLimit), ", ")
+		DEFAULT_CHAT_FRAME:AddMessage(string.format(OWN_REPAIR_MESSAGE, repairAllCoinText, guildFundsCoinText, ownFundsCoinText), 255, 255, 0)
 	end
 end
 
