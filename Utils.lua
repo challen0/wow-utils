@@ -1,5 +1,5 @@
-GUILD_REPAIR_MESSAGE = "Repairing your items for %s from guild funds. You have %s left for today."
-OWN_REPAIR_MESSAGE = "Repairing your items for %s (%s from guild funds and %s from your funds)."
+GUILD_REPAIR_MESSAGE = "Repairing your items for %s. You have %s left in the guild bank for today."
+OWN_REPAIR_MESSAGE = "Repairing your items for %s with %s from the guild bank and %s of your own money."
 
 function MerchantShow_AutoRepair(self, event)
 	if (CanMerchantRepair()) then
