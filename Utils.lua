@@ -19,6 +19,18 @@ function DetermineRepairMessage(repairAllCost, guildBankWithdrawLimit)
 	end
 end
 
+function FormatGuildRepairMessage(message, repairAllCost, guildBankWithdrawLimit)
+	return string.format(message, FormatMoney(repairAllCost), FormatMoney(guildBankWithdrawLimit))
+end
+
+function FormatOwnRepairMessage(message, repairAllCost, guildBankUsed, ownMoneyUsed)
+	return string.format(message, FormatMoney(repairAllCost), FormatMoney(guildBankUsed), FormatMoney(ownMoneyUsed))
+end
+
+function FormatMoney(money)
+	return GetCoinText(money, ", ")
+end
+
 function PrintRepairMessage(repairAllCost)
 	local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
 	local repairAllCoinText = GetCoinText(repairAllCost, ", ")
