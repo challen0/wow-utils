@@ -13,9 +13,9 @@ end
 
 function DetermineRepairMessage(repairAllCost, guildBankWithdrawLimit)
 	if (repairAllCost < guildBankWithdrawLimit) then
-		return GUILD_REPAIR_MESSAGE
+		return FormatGuildRepairMessage(repairAllCost, guildBankWithdrawLimit - repairAllCost)
 	else
-		return OWN_REPAIR_MESSAGE
+		return FormatOwnRepairMessage(repairAllCost, guildBankWithdrawLimit, repairAllCost - guildBankWithdrawLimit)
 	end
 end
 
