@@ -1,14 +1,8 @@
 addonName, addonTable = ...
 
+local FormatMoney = addonTable.FormatMoney
+local PrintMessage = addonTable.PrintMessage
 local AutoRepair = {}
-
-local function FormatMoney(money)
-    return GetCoinText(money, ", ")
-end
-
-local function PrintRepairMessage(message)
-    DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
-end
 
 local function FormatGuildRepairMessage(repairAllCost, guildBankWithdrawLimit)
     local GuildRepairMessage = "Repairing your items for %s. You have %s left in the guild bank for today."
@@ -37,7 +31,7 @@ function AutoRepair:OnMerchantShow(event)
             local canUseGuildBankForRepairing = CanGuildBankRepair()
             if (needRepairs and canUseGuildBankForRepairing) then
                 local message = DetermineRepairMessage(repairAllCost)
-                PrintRepairMessage(message)
+                PrintMessage(message)
                 RepairAllItems(true)
             end
         end
