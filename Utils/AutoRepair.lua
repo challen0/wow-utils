@@ -1,3 +1,7 @@
+addonName, addonTable = ...
+
+local AutoRepair = {}
+
 function MerchantShow_AutoRepair(self, event)
     if event == "MERCHANT_SHOW" then
         local canMerchantRepair = CanMerchantRepair()
@@ -39,3 +43,5 @@ end
 function PrintRepairMessage(message)
     DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
 end
+
+addonTable.AutoRepair = AutoRepair
