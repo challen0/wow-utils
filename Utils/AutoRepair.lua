@@ -2,7 +2,7 @@ addonName, addonTable = ...
 
 local AutoRepair = {}
 
-function MerchantShow_AutoRepair(self, event)
+function OnMerchantShow(self, event)
     if event == "MERCHANT_SHOW" then
         local canMerchantRepair = CanMerchantRepair()
         if (canMerchantRepair) then
