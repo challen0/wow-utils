@@ -1,6 +1,6 @@
 function MerchantShow_AutoRepair(self, event)
     if event == "MERCHANT_SHOW" then
-        canMerchantRepair = CanMerchantRepair()
+        local canMerchantRepair = CanMerchantRepair()
         if (canMerchantRepair) then
             local repairAllCost, needRepairs = GetRepairAllCost()
             local canUseGuildBankForRepairing = CanGuildBankRepair()
