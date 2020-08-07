@@ -6,7 +6,7 @@
         {
             "label": "Copy to AddOns",
             "type": "shell",
-            "command": "cp Utils.toc Utils.lua '/c/Program Files (x86)/World of Warcraft/_retail_/Interface/AddOns/Utils'",
+            "command": "cp -r Utils '/c/Program Files (x86)/World of Warcraft/_retail_/Interface/AddOns'",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
