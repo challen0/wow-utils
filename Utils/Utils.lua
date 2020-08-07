@@ -1,6 +1,9 @@
 addonName, addonTable = ...
 
-local f = CreateFrame("Frame")
-f:RegisterEvent("MERCHANT_SHOW")
-f:SetScript("OnEvent", addonTable.AutoRepair.OnMerchantShow)
-f:SetScript("OnEvent", addonTable.SellPoorQuality.OnMerchantShow)
+local AutoRepairFrame = CreateFrame("Frame")
+AutoRepairFrame:RegisterEvent("MERCHANT_SHOW")
+AutoRepairFrame:SetScript("OnEvent", addonTable.AutoRepair.OnMerchantShow)
+
+local SellPoorQualityFrame = CreateFrame("Frame")
+SellPoorQualityFrame:RegisterEvent("MERCHANT_SHOW")
+SellPoorQualityFrame:SetScript("OnEvent", addonTable.SellPoorQuality.OnMerchantShow)
