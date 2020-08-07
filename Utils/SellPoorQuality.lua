@@ -9,6 +9,11 @@ local function FormatSoldMessage(total)
     return string.format(SoldMessage, FormatMoney(total))
 end
 
+local function SellItem(bag, slot)
+    PickupContainerItem(bag, slot)
+    PickupMerchantItem()
+end
+
 function SellPoorQuality:OnMerchantShow(event)
 
 end
