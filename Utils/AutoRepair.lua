@@ -24,7 +24,7 @@ local function DetermineRepairMessage(repairAllCost)
 end
 
 function AutoRepair:OnMerchantShow(event)
-    if event == "MERCHANT_SHOW" then
+    if (event == "MERCHANT_SHOW") then
         local canMerchantRepair = CanMerchantRepair()
         if (canMerchantRepair) then
             local repairAllCost, needRepairs = GetRepairAllCost()
