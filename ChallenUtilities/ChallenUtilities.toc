@@ -1,0 +1,8 @@
+## Interface: 80300
+## Title: challen's Utilities
+## Notes: A few helpful utilities for WoW!
+
+Helpers.lua
+AutoRepair.lua
+SellPoorQuality.lua
+Main.lua

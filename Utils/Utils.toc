@@ -1,8 +1,0 @@
-## Interface: 80300
-## Title: challen's Utils
-## Notes: My utilities!
-
-Helpers.lua
-AutoRepair.lua
-SellPoorQuality.lua
-Utils.lua
