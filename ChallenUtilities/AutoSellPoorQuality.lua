@@ -2,7 +2,7 @@ addonName, addonTable = ...
 
 local FormatMoney = addonTable.FormatMoney
 local PrintMessage = addonTable.PrintMessage
-local SellPoorQuality = {}
+local AutoSellPoorQuality = {}
 
 local function FormatSoldMessage(total)
     local SoldMessage = "Sold all poor quality items for %s"
@@ -14,7 +14,7 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
-function SellPoorQuality:OnMerchantShow(event)
+function AutoSellPoorQuality:OnMerchantShow(event)
     if (event == "MERCHANT_SHOW") then
         local totalSellPrice = 0
         for bag = 0, 4 do
@@ -34,4 +34,4 @@ function SellPoorQuality:OnMerchantShow(event)
     end
 end
 
-addonTable.SellPoorQuality = SellPoorQuality
+addonTable.AutoSellPoorQuality = AutoSellPoorQuality
