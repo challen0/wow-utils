@@ -4,5 +4,5 @@
 
 Helpers.lua
 AutoRepair.lua
-SellPoorQuality.lua
+AutoSellPoorQuality.lua
 Main.lua
