@@ -6,4 +6,4 @@ AutoRepairFrame:SetScript("OnEvent", addonTable.AutoRepair.OnMerchantShow)
 
 local AutoSellPoorQualityFrame = CreateFrame("Frame")
 AutoSellPoorQualityFrame:RegisterEvent("MERCHANT_SHOW")
-AutoSellPoorQualityFrame:SetScript("OnEvent", addonTable.SellPoorQuality.OnMerchantShow)
+AutoSellPoorQualityFrame:SetScript("OnEvent", addonTable.AutoSellPoorQuality.OnMerchantShow)
