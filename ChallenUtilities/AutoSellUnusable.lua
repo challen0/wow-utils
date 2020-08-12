@@ -31,23 +31,39 @@ local function CanEquipShield(class)
     return class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN'
 end
 
+local function CanWearPlate(class)
+    return class == 'DEATHKNIGHT' or class == 'PALADIN' or class == 'WARRIOR'
+end
+
+local function CanWearMail(class)
+    return CanWearPlate(class) or class == 'HUNTER' or class == 'SHAMAN'
+end
+
+local function CanWearLeather(class)
+    return CanWearMail(class) or class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE'
+end
+
+local function CanWearCloth(class)
+    return CanWearLeather(class) or class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK'
+end
+
 local function GetUsableItems(class)
     local usableItems = {}
 
-    if (class == 'DEATHKNIGHT' or class == 'PALADIN' or class == 'WARRIOR') then
+    if (CanWearCloth(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
+    end
+
+    if (CanWearLeather(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
+    end
+
+    if (CanWearMail(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_MAIL] = true
+    end
+
+    if (CanWearPlate(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_PLATE] = true
-    elseif (class == 'HUNTER' or class == 'SHAMAN') then
-        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
-        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
-        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_MAIL] = true
-    elseif (class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE') then
-        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
-        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
-    elseif (class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK') then
-        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
 
     local canEquipShield = CanEquipShield(class)
