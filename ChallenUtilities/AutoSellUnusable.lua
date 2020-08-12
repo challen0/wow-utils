@@ -15,7 +15,7 @@ local function SellItem(bag, slot)
 end
 
 local function IsItemBindOnPickup(bindType)
-    return bindType == 1 -- 1 is bind on pickup
+    return bindType == 1
 end
 
 local function IsItemArmor(itemClassID)
