@@ -27,6 +27,10 @@ local function GetPlayerClass()
     return class
 end
 
+local function CanEquipShield(class)
+    return class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN'
+end
+
 local function GetUsableItems(class)
     local usableItems = {}
 
@@ -46,7 +50,8 @@ local function GetUsableItems(class)
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
 
-    if (class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN') then
+    local canEquipShield = CanEquipShield(class)
+    if (canEquipShield) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_SHIELD] = true
     end
 
