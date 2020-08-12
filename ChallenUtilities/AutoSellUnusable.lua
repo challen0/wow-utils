@@ -67,7 +67,7 @@ local function GetUsableWeaponsAndArmor()
     return usableWeaponsAndArmor
 end
 
-local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
+local function CheckItemUsability(bindType, itemClassID, itemSubclassID, itemEquipLoc)
     if (bindType ~= 1) then -- 1 is bind on pickup
         return true
     end
@@ -87,8 +87,8 @@ function AutoSellUnusable:OnMerchantShow(event)
             for slot = 1, GetContainerNumSlots(bag) do
                 local _, itemCount, _, _, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
                 if (itemID and not noValue) then
-                    local _, _, _, _, _, _, _, _, _, _, itemSellPrice, itemClassID, itemSubclassID, bindType, _, _, _ = GetItemInfo(itemID)
-                    local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubclassID)
+                    local _, _, _, _, _, _, _, _, itemEquipLoc, _, itemSellPrice, itemClassID, itemSubclassID, bindType, _, _, _ = GetItemInfo(itemID)
+                    local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubclassID, itemEquipLoc)
                     if (not isItemUsable) then
                         local stackPrice = itemCount * itemSellPrice
                         totalSellPrice = totalSellPrice + stackPrice
