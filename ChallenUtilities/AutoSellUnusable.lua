@@ -21,8 +21,8 @@ function AutoSellUnusable:OnMerchantShow(event)
             for slot = 1, GetContainerNumSlots(bag) do
                 local _, itemCount, _, _, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
                 if (itemID and not noValue) then
-                    local _, _, _, _, _, _, _, _, _, _, itemSellPrice, itemClassID, itemSubClassID, bindType, _, _, _ = GetItemInfo(itemID)
-                    local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubClassID)
+                    local _, _, _, _, _, _, _, _, _, _, itemSellPrice, itemClassID, itemSubclassID, bindType, _, _, _ = GetItemInfo(itemID)
+                    local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubclassID)
                     if (not isItemUsable) then
                         local stackPrice = itemCount * itemSellPrice
                         totalSellPrice = totalSellPrice + stackPrice
