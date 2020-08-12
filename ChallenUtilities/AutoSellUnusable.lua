@@ -27,41 +27,31 @@ local function IsItemArmor(itemClassID)
     return itemClassID == LE_ITEM_CLASS_ARMOR
 end
 
-local function GetUsableItems()
-    local _, class, _ = UnitClass('player')
-    local usableArmor
-    if (class == 'WARRIOR') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER, LE_ITEM_ARMOR_MAIL, LE_ITEM_ARMOR_PLATE, LE_ITEM_ARMOR_SHIELD}
-    elseif (class == 'PALADIN') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER, LE_ITEM_ARMOR_MAIL, LE_ITEM_ARMOR_PLATE, LE_ITEM_ARMOR_SHIELD}
-    elseif (class == 'DEATHKNIGHT') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER, LE_ITEM_ARMOR_MAIL, LE_ITEM_ARMOR_PLATE}
-    elseif (class == 'HUNTER') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER, LE_ITEM_ARMOR_MAIL}
-    elseif (class == 'SHAMAN') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER, LE_ITEM_ARMOR_MAIL, LE_ITEM_ARMOR_SHIELD}
-    elseif (class == 'ROGUE') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER}
-    elseif (class == 'MONK') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER}
-    elseif (class == 'DRUID') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER}
-    elseif (class == 'DEMONHUNTER') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH, LE_ITEM_ARMOR_LEATHER}
-    elseif (class == 'PRIEST') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH}
-    elseif (class == 'MAGE') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH}
-    elseif (class == 'WARLOCK') then
-        usableArmor = {LE_ITEM_ARMOR_CLOTH}
+local function GetUsableItems(class)
+    local usableItems = {}
+
+    if (class == 'DEATHKNIGHT' or class == 'PALADIN' or class == 'WARRIOR') then
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_MAIL] = true
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_PLATE] = true
+    elseif (class == 'HUNTER' or class == 'SHAMAN') then
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_MAIL] = true
+    elseif (class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE') then
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
+    elseif (class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK') then
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
 
-    local usable = {}
-    for subclass in usableArmor do
-        usable[LE_ITEM_CLASS_ARMOR][subclass] = true
+    -- handle classes that can use shields
+    if (class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN') then
+        usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_SHIELD] = true
     end
 
-    return usable
+    return usableItems
 end
 
 local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
