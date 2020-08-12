@@ -14,6 +14,10 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
+local function IsItemBindOnPickup(bindType)
+    return bindType == 1 -- 1 is bind on pickup
+end
+
 local function GetUsableArmor()
     local _, class, _ = UnitClass('player')
     local usableArmor
