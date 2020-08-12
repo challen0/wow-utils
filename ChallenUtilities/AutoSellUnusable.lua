@@ -43,12 +43,12 @@ local function GetUsableArmor()
         usableArmor = {LE_ITEM_ARMOR_CLOTH}
     end
 
-    local usableWeaponsAndArmor = {}
+    local usable = {}
     for subclass in usableArmor do
-        usableWeaponsAndArmor[LE_ITEM_CLASS_ARMOR][subclass] = true
+        usable[LE_ITEM_CLASS_ARMOR][subclass] = true
     end
 
-    return usableWeaponsAndArmor
+    return usable
 end
 
 local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
