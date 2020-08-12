@@ -46,7 +46,6 @@ local function GetUsableItems(class)
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
 
-    -- handle classes that can use shields
     if (class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN') then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_SHIELD] = true
     end
