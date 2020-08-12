@@ -66,8 +66,7 @@ local function GetUsableItems(class)
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_PLATE] = true
     end
 
-    local canEquipShield = CanEquipShield(class)
-    if (canEquipShield) then
+    if (CanEquipShield(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_SHIELD] = true
     end
 
