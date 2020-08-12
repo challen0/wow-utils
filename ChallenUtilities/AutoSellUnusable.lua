@@ -22,7 +22,7 @@ local function IsItemArmor(itemClassID)
     return itemClassID == LE_ITEM_CLASS_ARMOR
 end
 
-local function GetUsableArmor()
+local function GetUsableItems()
     local _, class, _ = UnitClass('player')
     local usableArmor
     if (class == 'WARRIOR') then
@@ -70,8 +70,8 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    local usableArmor = GetUsableArmor()
-    return usableArmor[itemClassID][itemSubclassID] == true
+    local usableItems = GetUsableItems()
+    return usableItems[itemClassID][itemSubclassID] == true
 end
 
 function AutoSellUnusable:OnMerchantShow(event)
