@@ -65,7 +65,8 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    if (itemClassID ~= LE_ITEM_CLASS_ARMOR) then
+    local isItemArmor = IsItemArmor(itemClassID)
+    if (not isItemArmor) then
         return true
     end
 
