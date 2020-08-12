@@ -14,6 +14,11 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
+local function GetPlayerClass()
+    local class, _ = UnitClassBase('player')
+    return class
+end
+
 local function IsItemBindOnPickup(bindType)
     return bindType == 1 -- 1 is bind on pickup
 end
