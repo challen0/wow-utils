@@ -14,7 +14,7 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
-local function GetUsableWeaponsAndArmor()
+local function GetUsableArmor()
     local _, class, _ = UnitClass('player')
     local usableArmor
     if (class == 'WARRIOR') then
@@ -60,7 +60,7 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    local usableWeaponsAndArmor = GetUsableWeaponsAndArmor()
+    local usableWeaponsAndArmor = GetUsableArmor()
     return usableWeaponsAndArmor[itemClassID][itemSubclassID] == true
 end
 
