@@ -70,7 +70,8 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    local usableItems = GetUsableItems()
+    local class = GetPlayerClass()
+    local usableItems = GetUsableItems(class)
     return usableItems[itemClassID][itemSubclassID] == true
 end
 
