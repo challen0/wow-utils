@@ -60,8 +60,8 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    local usableWeaponsAndArmor = GetUsableArmor()
-    return usableWeaponsAndArmor[itemClassID][itemSubclassID] == true
+    local usableArmor = GetUsableArmor()
+    return usableArmor[itemClassID][itemSubclassID] == true
 end
 
 function AutoSellUnusable:OnMerchantShow(event)
