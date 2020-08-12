@@ -18,6 +18,10 @@ local function IsItemBindOnPickup(bindType)
     return bindType == 1 -- 1 is bind on pickup
 end
 
+local function IsItemArmor(itemClassID)
+    return itemClassID == LE_ITEM_CLASS_ARMOR
+end
+
 local function GetUsableArmor()
     local _, class, _ = UnitClass('player')
     local usableArmor
