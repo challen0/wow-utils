@@ -56,7 +56,8 @@ local function GetUsableArmor()
 end
 
 local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
-    if (bindType ~= 1) then -- 1 is bind on pickup
+    local isItemBindOnPickup = IsItemBindOnPickup(bindType)
+    if (not isItemBindOnPickup) then
         return true
     end
 
