@@ -1,18 +1,11 @@
 addonName, addonTable = ...
 
+local ItemInfo = addonTable.ItemInfo
 local AutoSellUnusable = {}
 
 local function SellItem(bag, slot)
     PickupContainerItem(bag, slot)
     PickupMerchantItem()
-end
-
-local function IsItemBindOnPickup(bindType)
-    return bindType == 1
-end
-
-local function IsItemArmor(itemClassID)
-    return itemClassID == LE_ITEM_CLASS_ARMOR
 end
 
 local function GetPlayerClass()
@@ -67,12 +60,12 @@ local function GetUsableItems(class)
 end
 
 local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
-    local isItemBindOnPickup = IsItemBindOnPickup(bindType)
+    local isItemBindOnPickup = ItemInfo:IsItemBindOnPickup(bindType)
     if (not isItemBindOnPickup) then
         return true
     end
 
-    local isItemArmor = IsItemArmor(itemClassID)
+    local isItemArmor = ItemInfo:IsItemArmor(itemClassID)
     if (not isItemArmor) then
         return true
     end
@@ -82,16 +75,12 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
     return usableItems[itemClassID][itemSubclassID] == true
 end
 
-local function IsItemPoorQuality(quality)
-    return quality == 0
-end
-
 function AutoSellUnusable:OnMerchantShow(event)
     if (event == "MERCHANT_SHOW") then
         for bag = 0, 4 do
             for slot = 1, GetContainerNumSlots(bag) do
                 local _, _, _, quality, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
-                if (itemID and not IsItemPoorQuality(quality) and not noValue) then
+                if (itemID and not ItemInfo:IsItemPoorQuality(quality) and not noValue) then
                     local _, _, _, _, _, _, _, _, _, _, _, itemClassID, itemSubclassID, bindType, _, _, _ = GetItemInfo(itemID)
                     local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubclassID)
                     if (not isItemUsable) then

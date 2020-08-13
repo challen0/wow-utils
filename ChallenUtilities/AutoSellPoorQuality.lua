@@ -1,5 +1,6 @@
 addonName, addonTable = ...
 
+local ItemInfo = addonTable.ItemInfo
 local AutoSellPoorQuality = {}
 
 local function SellItem(bag, slot)
@@ -12,7 +13,7 @@ function AutoSellPoorQuality:OnMerchantShow(event)
         for bag = 0, 4 do
             for slot = 1, GetContainerNumSlots(bag) do
                 local _, _, _, quality, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
-                if (itemID and quality == 0 and not noValue) then
+                if (itemID and ItemInfo:IsItemPoorQuality(quality) and not noValue) then
                     SellItem(bag, slot)
                 end
             end
