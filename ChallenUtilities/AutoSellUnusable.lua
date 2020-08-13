@@ -8,14 +8,6 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
-local function IsItemBindOnPickup(bindType)
-    return bindType == 1
-end
-
-local function IsItemArmor(itemClassID)
-    return itemClassID == LE_ITEM_CLASS_ARMOR
-end
-
 local function GetPlayerClass()
     local class, _ = UnitClassBase('player')
     return class
@@ -81,10 +73,6 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
     local class = GetPlayerClass()
     local usableItems = GetUsableItems(class)
     return usableItems[itemClassID][itemSubclassID] == true
-end
-
-local function IsItemPoorQuality(quality)
-    return quality == 0
 end
 
 function AutoSellUnusable:OnMerchantShow(event)
