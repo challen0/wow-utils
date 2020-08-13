@@ -82,12 +82,16 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
     return usableItems[itemClassID][itemSubclassID] == true
 end
 
+local function IsItemPoorQuality(quality)
+    return quality == 0
+end
+
 function AutoSellUnusable:OnMerchantShow(event)
     if (event == "MERCHANT_SHOW") then
         for bag = 0, 4 do
             for slot = 1, GetContainerNumSlots(bag) do
-                local _, _, _, _, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
-                if (itemID and not noValue) then
+                local _, _, _, quality, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
+                if (itemID and not IsItemPoorQuality(quality) and not noValue) then
                     local _, _, _, _, _, _, _, _, _, _, _, itemClassID, itemSubclassID, bindType, _, _, _ = GetItemInfo(itemID)
                     local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubclassID)
                     if (not isItemUsable) then
