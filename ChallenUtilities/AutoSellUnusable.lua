@@ -36,13 +36,11 @@ local function GetUsableItems(class)
 end
 
 local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
-    local isItemBindOnPickup = ItemInfo:IsItemBindOnPickup(bindType)
-    if (not isItemBindOnPickup) then
+    if (not ItemInfo:IsItemBindOnPickup(bindType)) then
         return true
     end
 
-    local isItemArmor = ItemInfo:IsItemArmor(itemClassID)
-    if (not isItemArmor) then
+    if (not ItemInfo:IsItemArmor(itemClassID)) then
         return true
     end
 
@@ -58,8 +56,7 @@ function AutoSellUnusable:OnMerchantShow(event)
                 local _, _, _, quality, _, _, _, _, noValue, itemID = GetContainerItemInfo(bag, slot)
                 if (itemID and not ItemInfo:IsItemPoorQuality(quality) and not noValue) then
                     local _, _, _, _, _, _, _, _, _, _, _, itemClassID, itemSubclassID, bindType, _, _, _ = GetItemInfo(itemID)
-                    local isItemUsable = CheckItemUsability(bindType, itemClassID, itemSubclassID)
-                    if (not isItemUsable) then
+                    if (not CheckItemUsability(bindType, itemClassID, itemSubclassID)) then
                         SellItem(bag, slot)
                     end
                 end
