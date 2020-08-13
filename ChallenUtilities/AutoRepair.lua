@@ -30,6 +30,11 @@ local function HowMuchOwnFundsUsed(repairAllCost)
     return repairAllCost - guildBankWithdrawLimit
 end
 
+local function FormatRepairMessage(ownFundsUsed)
+    local RepairMessage = "Used %s of your own money to repair items"
+    return string.format(RepairMessage, FormatMoney(ownFundsUsed))
+end
+
 local function PrintMessage(message)
     DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
 end
