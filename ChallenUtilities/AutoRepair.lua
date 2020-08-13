@@ -12,7 +12,7 @@ local function HowMuchOwnFundsUsed(repairAllCost)
 end
 
 local function FormatRepairMessage(ownFundsUsed)
-    local RepairMessage = "Used %s of your own money to repair items"
+    local RepairMessage = "Using %s of your own money to repair items"
     return string.format(RepairMessage, FormatMoney(ownFundsUsed))
 end
 
