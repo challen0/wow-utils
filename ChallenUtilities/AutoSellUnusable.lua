@@ -48,7 +48,7 @@ local function CanWearCloth(class)
 end
 
 local function GetUsableItems(class)
-    local usableItems = {}
+    local usableItems = {[LE_ITEM_CLASS_ARMOR] = {}}
 
     if (CanWearCloth(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
