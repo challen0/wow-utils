@@ -1,7 +1,5 @@
 addonName, addonTable = ...
 
-local FormatMoney = addonTable.FormatMoney
-local PrintMessage = addonTable.PrintMessage
 local AutoRepair = {}
 
 local function FormatMoney(money)
