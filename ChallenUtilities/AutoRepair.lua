@@ -43,7 +43,7 @@ function AutoRepair:OnMerchantShow(event)
             if (needRepairs and canUseGuildBankForRepairing) then
                 local ownFundsUsed = HowMuchOwnFundsUsed(repairAllCost)
                 if (ownFundsUsed > 0) then
-                    local message = DetermineRepairMessage(repairAllCost)
+                    local message = FormatRepairMessage(ownFundsUsed)
                     PrintMessage(message)
                 end
                 RepairAllItems(true)
