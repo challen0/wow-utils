@@ -36,6 +36,7 @@ function AutoRepair:OnMerchantShow(event)
             local repairAllCost, needRepairs = GetRepairAllCost()
             local canUseGuildBankForRepairing = CanGuildBankRepair()
             if (needRepairs and canUseGuildBankForRepairing) then
+                local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
                 local message = DetermineRepairMessage(repairAllCost)
                 PrintMessage(message)
                 RepairAllItems(true)
