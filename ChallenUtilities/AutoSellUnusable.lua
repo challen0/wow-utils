@@ -1,6 +1,7 @@
 addonName, addonTable = ...
 
 local ItemInfo = addonTable.ItemInfo
+local ClassInfo = addonTable.ClassInfo
 local AutoSellUnusable = {}
 
 local function SellItem(bag, slot)
@@ -8,51 +9,26 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
-local function GetPlayerClass()
-    local class, _ = UnitClassBase('player')
-    return class
-end
-
-local function CanEquipShield(class)
-    return class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN'
-end
-
-local function CanWearPlate(class)
-    return class == 'DEATHKNIGHT' or class == 'PALADIN' or class == 'WARRIOR'
-end
-
-local function CanWearMail(class)
-    return CanWearPlate(class) or class == 'HUNTER' or class == 'SHAMAN'
-end
-
-local function CanWearLeather(class)
-    return CanWearMail(class) or class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE'
-end
-
-local function CanWearCloth(class)
-    return CanWearLeather(class) or class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK'
-end
-
 local function GetUsableItems(class)
     local usableItems = {[LE_ITEM_CLASS_ARMOR] = {}}
 
-    if (CanWearCloth(class)) then
+    if (ClassInfo:CanWearCloth(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
 
-    if (CanWearLeather(class)) then
+    if (ClassInfo:CanWearLeather(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
     end
 
-    if (CanWearMail(class)) then
+    if (ClassInfo:CanWearMail(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_MAIL] = true
     end
 
-    if (CanWearPlate(class)) then
+    if (ClassInfo:CanWearPlate(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_PLATE] = true
     end
 
-    if (CanEquipShield(class)) then
+    if (ClassInfo:CanEquipShield(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_SHIELD] = true
     end
 
@@ -70,7 +46,7 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    local class = GetPlayerClass()
+    local class = ClassInfo:GetPlayerClass()
     local usableItems = GetUsableItems(class)
     return usableItems[itemClassID][itemSubclassID] == true
 end
