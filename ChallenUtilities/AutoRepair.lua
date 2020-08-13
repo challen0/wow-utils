@@ -2,10 +2,6 @@ addonName, addonTable = ...
 
 local AutoRepair = {}
 
-local function FormatMoney(money)
-    return GetCoinText(money, ", ")
-end
-
 local function HowMuchOwnFundsUsed(repairAllCost)
     local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
     return repairAllCost - guildBankWithdrawLimit
@@ -13,7 +9,7 @@ end
 
 local function FormatRepairMessage(ownFundsUsed)
     local RepairMessage = "Using %s of your own money to repair items"
-    return string.format(RepairMessage, FormatMoney(ownFundsUsed))
+    return string.format(RepairMessage, GetCoinText(ownFundsUsed, ", "))
 end
 
 local function PrintMessage(message)
