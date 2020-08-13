@@ -37,23 +37,23 @@ end
 local function GetUsableItems(class)
     local usableItems = {[LE_ITEM_CLASS_ARMOR] = {}}
 
-    if (CanWearCloth(class)) then
+    if (ClassInfo:CanWearCloth(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
 
-    if (CanWearLeather(class)) then
+    if (ClassInfo:CanWearLeather(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_LEATHER] = true
     end
 
-    if (CanWearMail(class)) then
+    if (ClassInfo:CanWearMail(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_MAIL] = true
     end
 
-    if (CanWearPlate(class)) then
+    if (ClassInfo:CanWearPlate(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_PLATE] = true
     end
 
-    if (CanEquipShield(class)) then
+    if (ClassInfo:CanEquipShield(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_SHIELD] = true
     end
 
@@ -71,7 +71,7 @@ local function CheckItemUsability(bindType, itemClassID, itemSubclassID)
         return true
     end
 
-    local class = GetPlayerClass()
+    local class = ClassInfo:GetPlayerClass()
     local usableItems = GetUsableItems(class)
     return usableItems[itemClassID][itemSubclassID] == true
 end
