@@ -2,6 +2,7 @@
 ## Title: challen's Utilities
 ## Notes: A few helpful utilities for WoW!
 
+ClassInfo.lua
 ItemInfo.lua
 AutoRepair.lua
 AutoSellPoorQuality.lua
