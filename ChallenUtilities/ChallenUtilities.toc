@@ -3,7 +3,6 @@
 ## Notes: A few helpful utilities for WoW!
 
 ItemInfo.lua
-Helpers.lua
 AutoRepair.lua
 AutoSellPoorQuality.lua
 AutoSellUnusable.lua
