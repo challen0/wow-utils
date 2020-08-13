@@ -25,6 +25,11 @@ local function DetermineRepairMessage(repairAllCost)
     end
 end
 
+local function HowMuchOwnFundsUsed(repairAllCost)
+    local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
+    return repairAllCost - guildBankWithdrawLimit
+end
+
 local function PrintMessage(message)
     DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
 end
