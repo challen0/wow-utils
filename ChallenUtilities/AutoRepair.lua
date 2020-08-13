@@ -16,6 +16,14 @@ local function PrintMessage(message)
     DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
 end
 
+local function HandleRepairMessaging(repairAllCost)
+    local ownFundsUsed = HowMuchOwnFundsUsed(repairAllCost)
+    if (ownFundsUsed > 0) then
+        local message = FormatRepairMessage(ownFundsUsed)
+        PrintMessage(message)
+    end
+end
+
 function AutoRepair:OnMerchantShow(event)
     if (event == "MERCHANT_SHOW") then
         local canMerchantRepair = CanMerchantRepair()
@@ -23,11 +31,7 @@ function AutoRepair:OnMerchantShow(event)
             local repairAllCost, needRepairs = GetRepairAllCost()
             local canUseGuildBankForRepairing = CanGuildBankRepair()
             if (needRepairs and canUseGuildBankForRepairing) then
-                local ownFundsUsed = HowMuchOwnFundsUsed(repairAllCost)
-                if (ownFundsUsed > 0) then
-                    local message = FormatRepairMessage(ownFundsUsed)
-                    PrintMessage(message)
-                end
+                HandleRepairMessaging(repairAllCost)
                 RepairAllItems(true)
             end
         end
