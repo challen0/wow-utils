@@ -1,6 +1,7 @@
 addonName, addonTable = ...
 
 local ItemInfo = addonTable.ItemInfo
+local ClassInfo = addonTable.ClassInfo
 local AutoSellUnusable = {}
 
 local function SellItem(bag, slot)
