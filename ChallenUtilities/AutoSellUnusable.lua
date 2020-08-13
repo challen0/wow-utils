@@ -9,31 +9,6 @@ local function SellItem(bag, slot)
     PickupMerchantItem()
 end
 
-local function GetPlayerClass()
-    local class, _ = UnitClassBase('player')
-    return class
-end
-
-local function CanEquipShield(class)
-    return class == 'WARRIOR' or class == 'PALADIN' or class == 'SHAMAN'
-end
-
-local function CanWearPlate(class)
-    return class == 'DEATHKNIGHT' or class == 'PALADIN' or class == 'WARRIOR'
-end
-
-local function CanWearMail(class)
-    return CanWearPlate(class) or class == 'HUNTER' or class == 'SHAMAN'
-end
-
-local function CanWearLeather(class)
-    return CanWearMail(class) or class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE'
-end
-
-local function CanWearCloth(class)
-    return CanWearLeather(class) or class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK'
-end
-
 local function GetUsableItems(class)
     local usableItems = {[LE_ITEM_CLASS_ARMOR] = {}}
 
