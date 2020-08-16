@@ -16,15 +16,15 @@ function ClassInfo:CanWearPlate(class)
 end
 
 function ClassInfo:CanWearMail(class)
-    return self.CanWearPlate(class) or class == 'HUNTER' or class == 'SHAMAN'
+    return ClassInfo:CanWearPlate(class) or class == 'HUNTER' or class == 'SHAMAN'
 end
 
 function ClassInfo:CanWearLeather(class)
-    return self.CanWearMail(class) or class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE'
+    return ClassInfo:CanWearMail(class) or class == 'DEMONHUNTER' or class == 'DRUID' or class == 'MONK' or class == 'ROGUE'
 end
 
 function ClassInfo:CanWearCloth(class)
-    return self.CanWearLeather(class) or class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK'
+    return ClassInfo:CanWearLeather(class) or class == 'MAGE' or class == 'PRIEST' or class == 'WARLOCK'
 end
 
 addonTable.ClassInfo = ClassInfo
