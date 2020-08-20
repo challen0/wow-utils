@@ -12,6 +12,11 @@ end
 local function GetUsableItems(class)
     local usableItems = {[LE_ITEM_CLASS_ARMOR] = {}}
 
+    -- everyone can use rings, trinkets, and necklaces
+    usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_GENERIC] = true
+    -- everyone can use cosmetic items
+    usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_COSMETIC] = true
+
     if (ClassInfo:CanWearCloth(class)) then
         usableItems[LE_ITEM_CLASS_ARMOR][LE_ITEM_ARMOR_CLOTH] = true
     end
