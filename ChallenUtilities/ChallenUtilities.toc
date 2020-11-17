@@ -1,4 +1,4 @@
-## Interface: 90001
+## Interface: 90002
 ## Title: challen's Utilities
 ## Notes: A few helpful utilities for WoW!
 
