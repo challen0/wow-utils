@@ -17,7 +17,7 @@ local function FormatProfitMessage(ownFundsUsed)
 end
 
 local function PrintMessage(message)
-    DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
+    DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 255)
 end
 
 local function HandleProfitMessaging(profit)
