@@ -12,8 +12,8 @@ local function IsItemPoorQuality(quality)
 end
 
 local function FormatProfitMessage(ownFundsUsed)
-    local RepairMessage = "Sold junk for %s"
-    return string.format(RepairMessage, GetCoinText(ownFundsUsed, ", "))
+    local profitMessage = "Sold junk for %s"
+    return string.format(profitMessage, GetCoinText(ownFundsUsed, ", "))
 end
 
 local function PrintMessage(message)
