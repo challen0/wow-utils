@@ -7,21 +7,19 @@ local function HowMuchOwnFundsUsed(repairAllCost)
     return repairAllCost - guildBankWithdrawLimit
 end
 
-local function FormatRepairMessage(ownFundsUsed)
-    local RepairMessage = "Using %s of your own money to repair items"
-    return string.format(RepairMessage, GetCoinText(ownFundsUsed, ", "))
-end
-
 local function PrintMessage(message)
-    DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 0)
+    DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 255)
 end
 
 local function HandleRepairMessaging(repairAllCost)
-    local ownFundsUsed = HowMuchOwnFundsUsed(repairAllCost)
+    local ownFundsUsed, guildRepairMoneyLeft = HowMuchOwnFundsUsed(repairAllCost)
+    local message = "Repaired gear for %s "
     if (ownFundsUsed > 0) then
-        local message = FormatRepairMessage(ownFundsUsed)
-        PrintMessage(message)
+        message = string.format(message.."with %s of your own money (no guild money left for the day)", GetCoinText(repairAllCost, ", "), GetCoinText(ownFundsUsed, ", "))
+    else
+        message = string.format(message.."and %s left from the guild for the day", GetCoinText(repairAllCost, ", "), GetCoinText(guildRepairMoneyLeft, ", "))
     end
+    PrintMessage(message)
 end
 
 function AutoRepair:OnMerchantShow(event)
@@ -31,8 +29,8 @@ function AutoRepair:OnMerchantShow(event)
             local repairAllCost, needRepairs = GetRepairAllCost()
             local canUseGuildBankForRepairing = CanGuildBankRepair()
             if (needRepairs and canUseGuildBankForRepairing) then
-                HandleRepairMessaging(repairAllCost)
                 RepairAllItems(true)
+                HandleRepairMessaging(repairAllCost)
             end
         end
     end
