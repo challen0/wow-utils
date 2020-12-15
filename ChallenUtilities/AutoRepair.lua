@@ -13,11 +13,10 @@ end
 
 local function HandleRepairMessaging(repairAllCost)
     local ownFundsUsed, guildRepairMoneyLeft = HowMuchOwnFundsUsed(repairAllCost)
-    local message = "Repaired gear for %s "
     if (ownFundsUsed > 0) then
-        message = string.format(message.."with %s of your own money (no guild money left for the day)", GetCoinText(repairAllCost, ", "), GetCoinText(ownFundsUsed, ", "))
+        message = string.format("Repaired gear for %s, but used %s of your own money (out of guild money for the day)", GetCoinText(repairAllCost, ", "), GetCoinText(ownFundsUsed, ", "))
     else
-        message = string.format(message.."and %s left from the guild for the day", GetCoinText(repairAllCost, ", "), GetCoinText(guildRepairMoneyLeft, ", "))
+        message = string.format("Repaired gear for %s, and you have %s left from the guild for the day", GetCoinText(repairAllCost, ", "), GetCoinText(guildRepairMoneyLeft, ", "))
     end
     PrintMessage(message)
 end
