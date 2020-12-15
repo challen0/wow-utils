@@ -4,7 +4,7 @@ local AutoRepair = {}
 
 local function HowMuchOwnFundsUsed(repairAllCost)
     local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
-    return repairAllCost - guildBankWithdrawLimit
+    return repairAllCost - guildBankWithdrawLimit, guildBankWithdrawLimit
 end
 
 local function PrintMessage(message)
