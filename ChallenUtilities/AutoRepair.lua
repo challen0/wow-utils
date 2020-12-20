@@ -2,23 +2,22 @@ addonName, addonTable = ...
 
 local AutoRepair = {}
 
-local function HowMuchOwnFundsUsed(repairAllCost)
-    local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
-    return repairAllCost - guildBankWithdrawLimit, guildBankWithdrawLimit
-end
-
 local function PrintMessage(message)
     DEFAULT_CHAT_FRAME:AddMessage(message, 255, 255, 255)
 end
 
-local function HandleRepairMessaging(repairAllCost)
-    local ownFundsUsed, guildRepairMoneyLeft = HowMuchOwnFundsUsed(repairAllCost)
-    if (ownFundsUsed > 0) then
-        message = string.format("Repaired gear for %s, but used %s of your own money (out of guild money for the day)", GetCoinText(repairAllCost, ", "), GetCoinText(ownFundsUsed, ", "))
+local function HandleRepairMessaging(repairAllCost, costDiff)
+    if (costDiff > 0) then
+        message = string.format("Repaired gear for %s, but used %s of your own money (out of guild money for the day)", GetCoinText(repairAllCost, ", "), GetCoinText(costDiff, ", "))
     else
-        message = string.format("Repaired gear for %s, and you have %s left from the guild for the day", GetCoinText(repairAllCost, ", "), GetCoinText(guildRepairMoneyLeft, ", "))
+        message = string.format("Repaired gear for %s, and you have %s left from the guild for the day", GetCoinText(repairAllCost, ", "), GetCoinText(abs(costDiff), ", "))
     end
     PrintMessage(message)
+end
+
+local function CalculateCostDirection(repairAllCost)
+    local guildBankWithdrawLimit = GetGuildBankWithdrawMoney()
+    return repairAllCost - guildBankWithdrawLimit
 end
 
 function AutoRepair:OnMerchantShow(event)
@@ -29,7 +28,8 @@ function AutoRepair:OnMerchantShow(event)
             local canUseGuildBankForRepairing = CanGuildBankRepair()
             if (needRepairs and canUseGuildBankForRepairing) then
                 RepairAllItems(true)
-                HandleRepairMessaging(repairAllCost)
+                local costDiff = CalculateCostDirection(repairAllCost)
+                HandleRepairMessaging(repairAllCost, costDiff)
             end
         end
     end
